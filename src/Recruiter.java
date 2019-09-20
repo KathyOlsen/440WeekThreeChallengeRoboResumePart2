@@ -9,10 +9,12 @@ public class Recruiter {
 
     public ArrayList<Person> searchSkills(ArrayList<Person> people,String skillSought){
         ArrayList<Person> haveSkillSought = new ArrayList<>();
-        for(Person person : people){
-            for(Skill skill : person.getSkills()){
-                if(skill.toString().equalsIgnoreCase(skillSought)){
-                    haveSkillSought.add(person);
+        if (people.size() > 0) {
+            for (Person person : people) {
+                for (Skill skill : person.getSkills()) {
+                    if (skill.toString().equalsIgnoreCase(skillSought)) {
+                        haveSkillSought.add(person);
+                    }
                 }
             }
         }

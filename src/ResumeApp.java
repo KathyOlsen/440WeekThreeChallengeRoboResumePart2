@@ -134,18 +134,20 @@ public class ResumeApp {
 
         System.out.println("Are you recruiter? (yes/no): ");
         if (key.next().equalsIgnoreCase("yes")) {
+            key.nextLine();
             System.out.println("Please enter a skill you are searching for: ");
             String skillSought = key.nextLine();
 
-            System.out.println("Here is a list of people whose resumes list the skill you seek: \n");
-            for (Person p : recruiter.searchSkills(ppl, skillSought)){
-                System.out.println(pers.personString() + education.educationString(eds) +
-                        job.jobString(jbs) + skill.skillString(sks));
+            if(recruiter.searchSkills(ppl, skillSought).size() > 0) {
+                System.out.println("Here is a list of people whose resumes list the skill you seek: \n");
+                for (Person p : recruiter.searchSkills(ppl, skillSought)) {
+                    System.out.println(pers.personString() + education.educationString(eds) +
+                            job.jobString(jbs) + skill.skillString(sks));
+                }
+            }else{
+                System.out.println("Sorry.  No resumes found with that skill.");
             }
         }
-        key.nextLine();
-
-
 
         System.out.println("Thank you for visiting.  Goodbye.");
     }
