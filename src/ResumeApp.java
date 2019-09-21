@@ -17,7 +17,7 @@ public class ResumeApp {
 
         System.out.println("Do you want to create a resume? (yes/no): ");
         if (key.next().equalsIgnoreCase("yes")) {
-
+            key.nextLine();
             //greeting, request name and email
             System.out.println("Welcome to Robo Resume Builder. I will ask you for a variety of information. " +
                     "\nPlease enter all words (apart from Job Descriptions and email) with Initial Caps.");
@@ -130,25 +130,25 @@ public class ResumeApp {
             String resume = pers.personString() + education.educationString(eds) +
                     job.jobString(jbs) + skill.skillString(sks);
             System.out.println("Here is your resume:\n\n" + resume);
-        }
-
-        System.out.println("Are you recruiter? (yes/no): ");
-        if (key.next().equalsIgnoreCase("yes")) {
+        }else {
             key.nextLine();
-            System.out.println("Please enter a skill you are searching for: ");
-            String skillSought = key.nextLine();
+            System.out.println("Are you a recruiter? (yes/no): ");
+            if (key.next().equalsIgnoreCase("yes")) {
+                key.nextLine();
+                System.out.println("Please enter a skill you are searching for: ");
+                String skillSought = key.nextLine();
 
-            if(recruiter.searchSkills(ppl, skillSought).size() > 0) {
-                System.out.println("Here is a list of people whose resumes list the skill you seek: \n");
-                for (Person p : recruiter.searchSkills(ppl, skillSought)) {
-                    System.out.println(pers.personString() + education.educationString(eds) +
-                            job.jobString(jbs) + skill.skillString(sks));
+                if (recruiter.searchSkills(ppl, skillSought).size() > 0) {
+                    System.out.println("Here is a list of people whose resumes list the skill you seek: \n");
+                    for (Person p : recruiter.searchSkills(ppl, skillSought)) {
+                        System.out.println(pers.personString() + education.educationString(eds) +
+                                job.jobString(jbs) + skill.skillString(sks));
+                    }
+                } else {
+                    System.out.println("Sorry.  No resumes found with that skill.");
                 }
-            }else{
-                System.out.println("Sorry.  No resumes found with that skill.");
             }
         }
-
         System.out.println("Thank you for visiting.  Goodbye.");
     }
 
